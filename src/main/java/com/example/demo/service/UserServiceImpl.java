@@ -5,6 +5,8 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
@@ -17,5 +19,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         User user1 = userRepository.save(user);
+    }
+
+    public User findById(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isEmpty()) {
+            throw new RuntimeException();
+        }
+        User user = userOptional.get();
+        return user;
     }
 }

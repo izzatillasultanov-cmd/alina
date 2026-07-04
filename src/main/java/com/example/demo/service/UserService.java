@@ -4,4 +4,6 @@ import com.example.demo.entity.User;
 
 public interface UserService {
     void save(User user);
+
+    User findById(Long id);
 }
